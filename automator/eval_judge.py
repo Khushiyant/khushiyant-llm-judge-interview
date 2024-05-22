@@ -8,8 +8,7 @@ import pandas as pd
 from datetime import datetime
 from typing import Literal
 from llm_judge.database.models.prompts import Prompt
-import yaml
-import subprocess
+
 import ast
 import shutil
 import json
@@ -25,6 +24,38 @@ from llm_judge.utils.common import load_from_json
 class EvalJudge:
     """
     Evaluate the quality of a judge prompt by comparing it to a ground truth.
+
+    Parameters:
+    - ideal_judgment_path (str): The path to the ground truth judgment file.
+    - judge_class (Judge): The class representing the judge to be used for evaluation.
+    - experiments_run_folder (str): The folder where the evaluation results will be stored.
+    - raw_data_folder (str): The folder containing the raw data for evaluation.
+    - test_split (float): The fraction of data to be used for testing.
+    - random_seed (int): The random seed for reproducibility.
+    - judgments_for_few_shot_retrieval_fp (str): The file path for judgments used for few-shot retrieval.
+
+    Attributes:
+    - judge_class (Judge): The class representing the judge to be used for evaluation.
+    - datetime_str (str): The current date and time in the format 'mm-dd_HH-MM-SS'.
+    - raw_data_folder (str): The folder containing the raw data for evaluation.
+    - ideal_judgment_df (pd.DataFrame): The DataFrame containing the ground truth judgments.
+    - train_df (pd.DataFrame): The DataFrame containing the training data.
+    - test_df (pd.DataFrame): The DataFrame containing the testing data.
+    - output_dir (str): The directory where the evaluation results will be stored.
+    - judgments_for_few_shot_retrieval_fp (str): The file path for judgments used for few-shot retrieval.
+
+    Methods:
+    - copy_config_files(): Copy the configuration files to the output directory.
+    - evaluate_judge_prompt(judge_prompt: str, eval_on: Literal["train", "test", "all"]) -> pd.DataFrame:
+        Evaluate the quality of a judge prompt by comparing it to a ground truth.
+    - run_judge_with_prompt(judge_prompt: str) -> pd.DataFrame:
+        Execute a judge prompt and return the results.
+    - _prep_prompt(judge_prompt: str) -> str:
+        Prepare the judge prompt by adding a base template.
+    - _prep_config(judge_prompt_id: str) -> dict:
+        Prepare the configuration data for running the judge.
+    - _export_all_ids(judgment_df_to_eval: pd.DataFrame, output_folder: str):
+        Export all question and answer IDs to JSON files.
     """
 
     def __init__(
@@ -46,8 +77,12 @@ class EvalJudge:
         self.train_df = self.ideal_judgment_df.sample(frac=1 - test_split)
         self.test_df = self.ideal_judgment_df.drop(self.train_df.index)
         self.output_dir = os.path.join(experiments_run_folder, self.datetime_str)
+        self.judgments_for_few_shot_retrieval_fp = judgments_for_few_shot_retrieval_fp
         os.makedirs(self.output_dir, exist_ok=True)
 
+        self.copy_config_files()
+
+    def copy_config_files(self):
         # Copy gen_questions_config.yaml and gen_answers_config.yaml from raw_data_folder to output_dir
         shutil.copy(
             os.path.join(self.raw_data_folder, "gen_questions_config.yaml"),
@@ -83,11 +118,11 @@ class EvalJudge:
 
         if self.judge_class == DynamicFewShotJudge:
             assert (
-                judgments_for_few_shot_retrieval_fp
+                self.judgments_for_few_shot_retrieval_fp
             ), "judgments_for_few_shot_retrieval_fp must be provided for DynamicFewShotJudge"
             self.config_template["judge"]["init_args"][
                 "ideal_judgment_path"
-            ] = judgments_for_few_shot_retrieval_fp
+            ] = self.judgments_for_few_shot_retrieval_fp
 
     def evaluate_judge_prompt(
         self, judge_prompt: str, eval_on=Literal["train", "test", "all"]
@@ -107,25 +142,29 @@ class EvalJudge:
 
         self._export_all_ids(eval_df, self.output_dir)
 
-        exp_judge_results = self.run_judge_with_prompt(judge_prompt)
-        merged_results = pd.merge(
-            exp_judge_results,
-            self.ideal_judgment_df[["answer_id", "score"]],
-            on="answer_id",
-            how="left",
-        )
-        merged_results["exp_judge_score"] = merged_results["score"].apply(
-            ast.literal_eval
-        )
-        merged_results["ideal_judge_score"] = merged_results["score"].apply(
-            ast.literal_eval
-        )
-        print(
-            "The judge score is: ",
-            (
-                merged_results["exp_judge_score"] == merged_results["ideal_judge_score"]
-            ).mean(),
-        )
+        try:
+            exp_judge_results = self.run_judge_with_prompt(judge_prompt)
+            merged_results = pd.merge(
+                exp_judge_results,
+                self.ideal_judgment_df[["answer_id", "score_x"]],
+                on="answer_id",
+                how="left",
+            )
+            merged_results["exp_judge_score"] = merged_results["score_x"].apply(
+                ast.literal_eval
+            )
+            merged_results["ideal_judge_score"] = merged_results["score_y"].apply(
+                ast.literal_eval
+            )
+            print(
+                "The judge score is: ",
+                (
+                    merged_results["exp_judge_score"]
+                    == merged_results["ideal_judge_score"]
+                ).mean(),
+            )
+        except Exception as e:
+            print(f"Error: {e}")
         return merged_results
 
     def run_judge_with_prompt(self, judge_prompt: str) -> pd.DataFrame:
@@ -160,13 +199,13 @@ class EvalJudge:
 
     def _prep_prompt(self, judge_prompt: str) -> str:
         judge_prompt_base = """
-Think step by step and explain your reasoning. Then, decide if the candidate answer is as good as the reference answer.
-Avoid any position biases and ensure that the order in which the candidate and reference answers were presented does not influence your decision. Do not allow the length of the responses to influence your evaluation. Be as objective as possible.
-After you output your analysis on the criteria, output your final verdict at the end by **strictly following the following format**:
-```Final Verdict: "[[A]]"``` if candidate answer is better than the reference answer.
-```Final Verdict: "[[B]]"``` if the candidate is worse than the reference answer.
-```Final Verdict: "[[C]]"``` if they are similar in quality.
-"""
+    Think step by step and explain your reasoning. Then, decide if the candidate answer is as good as the reference answer.
+    Avoid any position biases and ensure that the order in which the candidate and reference answers were presented does not influence your decision. Do not allow the length of the responses to influence your evaluation. Be as objective as possible.
+    After you output your analysis on the criteria, output your final verdict at the end by **strictly following the following format**:
+    ```Final Verdict: "[[A]]"``` if candidate answer is better than the reference answer.
+    ```Final Verdict: "[[B]]"``` if the candidate is worse than the reference answer.
+    ```Final Verdict: "[[C]]"``` if they are similar in quality.
+        """
         judge_prompt_obj = Prompt(
             description="test judge prompt in eval_judge.py",
             content=judge_prompt + judge_prompt_base,

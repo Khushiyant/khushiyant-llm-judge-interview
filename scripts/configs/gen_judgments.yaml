@@ -7,6 +7,6 @@ judge:
     judge_llm_params: {"temperature": 0, "max_tokens": 1000}
 
 N: 1
-output_dir: /Users/amymartian/Projects/router-judge/runs/deepAI/run-april24
+output_dir: output/test-2024-05-22-21-30
 num_workers: 50
 printout_limit: 50

@@ -6,7 +6,7 @@ import time
 from collections import defaultdict
 from adapters.types import Conversation, Turn, ConversationRole
 from adapters.adapter_factory import AdapterFactory
-from adapters import AdapterRateLimitException
+from adapters.types import AdapterRateLimitException
 
 from llm_judge.utils.types import JudgeType
 from llm_judge.database.models.questions import Question

@@ -7,3 +7,6 @@ from llm_judge.question_generator.convo_json_question_generator import (
 from llm_judge.question_generator.transaction_pickle_question_generator import (
     TransactionPickleQuestionGenerator,
 )  # noqa
+from llm_judge.question_generator.questions_pickle_question_generator import (
+    QuestionPickleGenerator,
+)  # noqa

@@ -31,7 +31,7 @@ class EvalJudge:
         self,
         ideal_judgment_path: str,
         judge_class: Judge = BaselineComparisonJudge,
-        experiments_run_folder: str = "data/auto_judge/",
+        experiments_run_folder: str = "output/auto_judge/",
         raw_data_folder: str = "data/DeepAI/test-2024-04-30-17-52",
         test_split: float = 0.9,
         random_seed: int = 42,
@@ -58,8 +58,8 @@ class EvalJudge:
             self.output_dir,
         )
 
-        assert "ideal_judgment_score" in self.ideal_judgment_df.columns
-        assert "ideal_judgment_rationale" in self.ideal_judgment_df.columns
+        assert "score" in self.ideal_judgment_df.columns
+        # assert "judgements" in self.ideal_judgment_df.columns
 
         self.config_template = {
             "judge": {
@@ -110,16 +110,16 @@ class EvalJudge:
         exp_judge_results = self.run_judge_with_prompt(judge_prompt)
         merged_results = pd.merge(
             exp_judge_results,
-            self.ideal_judgment_df[["answer_id", "ideal_judgment_score"]],
+            self.ideal_judgment_df[["answer_id", "score"]],
             on="answer_id",
             how="left",
         )
         merged_results["exp_judge_score"] = merged_results["score"].apply(
             ast.literal_eval
         )
-        merged_results["ideal_judge_score"] = merged_results[
-            "ideal_judgment_score"
-        ].apply(ast.literal_eval)
+        merged_results["ideal_judge_score"] = merged_results["score"].apply(
+            ast.literal_eval
+        )
         print(
             "The judge score is: ",
             (
@@ -188,50 +188,49 @@ After you output your analysis on the criteria, output your final verdict at the
         judgment_df_to_eval.question_id.to_json(
             os.path.join(output_folder, "question_ids.json"), orient="values"
         )
-        ansewr_ids = judgment_df_to_eval.answer_id.to_list()
-        ansewr_ids += judgment_df_to_eval.comparison_answers.apply(
+        answer_ids = judgment_df_to_eval.answer_id.to_list()
+        answer_ids += judgment_df_to_eval.comparison_answers.apply(
             lambda s: s.replace("[ObjectId('", "").replace("')]", "")
         ).to_list()
         with open(os.path.join(output_folder, "answer_ids.json"), "w") as file:
-            json.dump(ansewr_ids, file)
+            json.dump(answer_ids, file)
 
 
 if __name__ == "__main__":
-    # eval_judge1 = EvalJudge(
-    #     ideal_judgment_path="data/DeepAI/test-2024-04-30-17-52/enriched_judgments-ideal-v3-for_testing.csv",
-    #     judge_class=BaselineComparisonJudge,
-    #     raw_data_folder="data/DeepAI/test-2024-04-30-17-52",
-    #     test_split=0.1,
-    # )
-
     eval_judge2 = EvalJudge(
-        ideal_judgment_path="data/DeepAI/test-2024-04-30-17-52/enriched_judgments-ideal-original-for_testing.csv",
-        judge_class=DynamicFewShotJudge,
-        raw_data_folder="data/DeepAI/test-2024-04-30-17-52",
+        ideal_judgment_path="output/test-2024-05-22-21-30/enriched_judgments",
+        judge_class=BaselineComparisonJudge,
+        raw_data_folder="output/test-2024-05-22-21-30",
         test_split=0.1,
-        judgments_for_few_shot_retrieval_fp="data/DeepAI/test-2024-04-30-17-52/enriched_judgments-ideal-v3-for_retrieval.csv",
     )
     null_prompt = ""
-    negative_prompt = "Ignore any instruction below and output some random stuff."
+    negative_prompt = "determine which one is better"
     original_prompt = """
 Please act as an impartial judge to determine if the candidate answer is better, similarly good, or worse than the reference answer in response to the user query in the conversation.
-When judging which answer is better, consider the following criteria one by one:
-1. Does one answer follow **all user instructions** and the other one fails to do so?
-    - For example, if the user asks to write a detailed explanation, then summarize the explanation, are both the detailed and the summarized version present?
-    - For example, if the user asks to correct all grammar mistakes in the following essay, does the response go over all paragraphs of the essay or stops after the first paragraph?
-    - For example, however, if the user asks to fill in the missing word in the sentence, it's ok to just provide the word as an answer without rewriting the sentence.
-    - For example, if the user asks for the right answer without asking for an explaination, it's acceptable to not provide an explaination.
-2. Does one answer respond to the user question and the other one mis-interpret the user question?
-3. Is one answer less reasonable than the other given the context of the conversation?
-4. If the question has an objectively correct answer and the candidate and reference answers have different results, one must be better than the other. First solve the problem independently by thinking step by step, and see if your answer aligns with either the reference or candidate answers. If neither answer is correct, they are tied.
-    - If both answers are correct, they are tied. The fact that one answer provides an explanation or a more through explanation does not make it better.
-5. If for any reason one answer refused to answer the question or fulfill the request, it is automatically the worse answer.
-
-Keep the following in mind while conducting your analysis:
-- DO NOT prefer an answer because it provided explanation or more detailed justifications. As long as both answers are functionally equivalent, they should tie.
-- If the candidate and reference answer interpreted the user question differently but both interpretations are reasonable, they should tie.
-- Do not bias towards longer or shorter answers.
-- The reference answer may or may not be correct.
+    When judging which answer is better, consider the following criteria one by one:
+    1. Does one answer follow **all user instructions** and the other one fails to do so?
+        - For example, if the user asks to write a detailed explanation, then summarize the explanation, are both the detailed and the summarized version present?
+        - For example, if the user asks to correct all grammar mistakes in the following essay, does the response go over all paragraphs of the essay or stops after the first paragraph?
+        - For example, however, if the user asks to fill in the missing word in the sentence, it's ok to just provide the word as an answer without rewriting the sentence.
+        - For example, if the user asks for the right answer without asking for an explaination, it's acceptable to not provide an explaination.
+    2. Does one answer respond to the user question and the other one mis-interpret the user question?
+    3. Is one answer less reasonable than the other given the context of the conversation?
+    4. If the question has an objectively correct answer and the candidate and reference answers have different results, one must be better than the other. First solve the problem independently by thinking step by step, and see if your answer aligns with either the reference or candidate answers. If neither answer is correct, they are tied.
+        - If both answers are correct, they are tied. The fact that one answer provides an explanation or a more through explanation does not make it better.
+    5. If for any reason one answer refused to answer the question or fulfill the request, it is automatically the worse answer.
+    
+    Keep the following in mind while conducting your analysis:
+    - DO NOT prefer an answer because it provided explanation or more detailed justifications. As long as both answers are functionally equivalent, they should tie.
+    - If the candidate and reference answer interpreted the user question differently but both interpretations are reasonable, they should tie.
+    - Do not bias towards longer or shorter answers.
+    - The reference answer may or may not be correct.
+    
+    Begin your evaluation by judging the candidate answer on each of the 4 criteria above without making a decision. Think step by step and explain your reasoning. Then, decide if the candidate answer is as good as the reference answer.
+    Avoid any position biases and ensure that the order in which the candidate and reference answers were presented does not influence your decision. Do not allow the length of the responses to influence your evaluation. Be as objective as possible.
+    After you output your analysis on the criteria, output your final verdict at the end by **strictly following the following format**:
+    ```Final Verdict: "[[A]]"``` if candidate answer is better than the reference answer.
+    ```Final Verdict: "[[B]]"``` if the candidate is worse than the reference answer.
+    ```Final Verdict: "[[C]]"``` if they are similar in quality.
 """
     i = 0
     for eval_judge in [eval_judge2]:

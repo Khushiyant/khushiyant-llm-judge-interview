@@ -4,7 +4,7 @@ import hashlib
 import json
 import yaml
 import os
-from adapters.types import Conversation
+from llm_judge.adapters.types import Conversation
 
 from llm_judge.database.models.base import MongoBaseModel
 from llm_judge.utils.types import LLMParamsList

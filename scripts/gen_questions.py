@@ -21,6 +21,7 @@ from llm_judge.utils.common import (
 from llm_judge.classifiers.classifier import Classifier
 from llm_judge.utils.types import LLMParamsList
 from llm_judge.utils.ground_truth import gen_gronud_truth
+import logging
 
 
 def batch_classify(
@@ -51,7 +52,7 @@ def batch_classify(
                 classified_questions.append(future.result().update())
             except Exception as e:
                 question = future_to_question[future]
-                print(f"Error classifying question {question.id}: {e}")
+                logging.info(f"Error classifying question {question.id}: {e}")
                 traceback.print_exc()
                 classified_questions.append(question)
     return classified_questions
@@ -110,7 +111,7 @@ def main(
             ]
 
     if not questions:
-        print("No questions were present in wanted classes.")
+        logging.info("No questions were present in wanted classes.")
         return
 
     if ground_truth_params:

@@ -13,6 +13,7 @@ from llm_judge.database.models.questions import Question
 from llm_judge.database.models.answers import Answer
 from llm_judge.database.models.judgments import Judgment
 from llm_judge.database.models.prompts import Prompt
+import logging
 
 
 class Judge(ABC):
@@ -129,12 +130,12 @@ class Judge(ABC):
                     input_conv, **self.judge_llm_params
                 ).response.content
             except AdapterRateLimitException as e:
-                print(f"Rate limit exceeded, waiting 1 minute, {e}")
+                logging.info(f"Rate limit exceeded, waiting 1 minute, {e}")
                 time.sleep(60)
 
             winner = self._parse_winner_from_judgment(judgment)
             if winner == "error":
-                print(f"** regenerate due to error. Judgement: {judgment}")
+                logging.info(f"** regenerate due to error. Judgement: {judgment}")
             num_retries += 1
 
         return winner, judgment.strip()
@@ -180,8 +181,8 @@ class Judge(ABC):
             pair.save()
             return pair
         except Exception as e:
-            print(
+            logging.info(
                 f"Error generating single judgment in for question id: {pair.question_id}, answer id: {pair.answer_id}, ground truth: {pair.ground_truth}  error: {e}"
             )
-            print(traceback.format_exc())
+            logging.info(traceback.format_exc())
             return None

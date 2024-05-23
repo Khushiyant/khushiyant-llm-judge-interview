@@ -1,7 +1,7 @@
 """
-This script is setup to dump the martian database transactions to disk. 
+This script is setup to dump the martian database transactions to disk.
 
-This dumps to pickle as ObjectID is not serializable to JSON. 
+This dumps to pickle as ObjectID is not serializable to JSON.
 
 """
 
@@ -11,6 +11,7 @@ import pymongo
 import pickle
 from jsonargparse import ActionConfigFile, ArgumentParser
 from dotenv import load_dotenv
+import logging
 
 load_dotenv("./.env", override=True)
 
@@ -57,7 +58,7 @@ def main(
     orgs = get_orgs_by_member_id(member_ids, connection_string)
     org_ids = [org["local_id"] for org in orgs]
     transactions = get_transactions_by_org_id(org_ids, limit, connection_string)
-    print(f"Found {len(transactions)} transactions")
+    logging.info(f"Found {len(transactions)} transactions")
     with open(output_file, "wb") as f:
         pickle.dump(transactions, f)
 

@@ -12,6 +12,7 @@ from adapters.types import (
 )
 from llm_judge.database.models.questions import Question
 from llm_judge.classifiers.classifier import Classifier
+import logging
 
 
 class ObjectivityClassifier(Classifier):
@@ -78,7 +79,7 @@ class ObjectivityClassifier(Classifier):
                 judgment = llm.execute_sync(input_conv, temperature=0).response.content
             except AdapterRateLimitException as e:
                 judgment = ""
-                print("Rate limit exceeded, waiting 1 minute")
+                logging.info("Rate limit exceeded, waiting 1 minute")
                 time.sleep(60)
 
             if "[[OBJECTIVE]]" in judgment:
@@ -86,7 +87,7 @@ class ObjectivityClassifier(Classifier):
             elif "[[SUBJECTIVE]]" in judgment:
                 classification = "subjective"
             else:
-                print(
+                logging.info(
                     f"** objecivity classifier - regenerate due to error. Judgement: {judgment}"
                 )
             num_retries += 1

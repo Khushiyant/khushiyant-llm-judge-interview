@@ -11,7 +11,7 @@ import concurrent.futures
 from tqdm import tqdm
 from adapters import AdapterFactory
 from adapters.types import Conversation
-
+import logging
 from llm_judge.database.models.answers import Answer
 from llm_judge.database.models.questions import Question
 from llm_judge.utils.prompt_modification import make_prompt_modification
@@ -126,8 +126,8 @@ def _gen_single_answer(answer: Answer, question: Question) -> Optional[Answer]:
             answer.cost = response.cost
             return answer.save()
         except Exception as e:
-            print(f"Error generating {question.id} for {answer.llm_id}: {e}")
-            print(traceback.format_exc())
+            logging.info(f"Error generating {question.id} for {answer.llm_id}: {e}")
+            logging.info(traceback.format_exc())
 
 
 def gen_answers(
@@ -191,7 +191,7 @@ def prepare_answers(
             answer_outputs.extend(answer[0])
             answer_worker_inputs.extend(answer[1])
 
-    print(f"Generating {len(answer_worker_inputs)} new answers")
+    logging.info(f"Generating {len(answer_worker_inputs)} new answers")
     return answer_outputs, answer_worker_inputs
 
 

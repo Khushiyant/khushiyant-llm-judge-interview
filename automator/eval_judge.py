@@ -8,7 +8,7 @@ import pandas as pd
 from datetime import datetime
 from typing import Literal
 from llm_judge.database.models.prompts import Prompt
-
+import logging
 import ast
 import shutil
 import json
@@ -156,7 +156,7 @@ class EvalJudge:
             merged_results["ideal_judge_score"] = merged_results["score_y"].apply(
                 ast.literal_eval
             )
-            print(
+            logging.info(
                 "The judge score is: ",
                 (
                     merged_results["exp_judge_score"]
@@ -164,7 +164,7 @@ class EvalJudge:
                 ).mean(),
             )
         except Exception as e:
-            print(f"Error: {e}")
+            logging.info(f"Error: {e}")
         return merged_results
 
     def run_judge_with_prompt(self, judge_prompt: str) -> pd.DataFrame:
@@ -192,7 +192,7 @@ class EvalJudge:
             printout_limit=configs["printout_limit"],
             output_enriched=configs["output_enriched"],
         )
-        print("the ↑ above result is experimental judge results")
+        logging.info("the ↑ above result is experimental judge results")
         enriched_judge_results = pd.read_csv(result_fp)
 
         return enriched_judge_results
@@ -276,5 +276,5 @@ Please act as an impartial judge to determine if the candidate answer is better,
         for judge_prompt in [negative_prompt, null_prompt, original_prompt]:
             i += 1
 
-            print(f"========\n== {i}  ==\n========")
+            logging.info(f"========\n== {i}  ==\n========")
             eval_judge.evaluate_judge_prompt(judge_prompt, eval_on="test")

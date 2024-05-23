@@ -1,5 +1,6 @@
 from llm_judge.database.models.prompts import Prompt
 from llm_judge.utils.types import JudgeType, PromptType
+import logging
 
 """
 Edit the following parameters and execute a file to create a new Prompt object in Mongodb.
@@ -15,4 +16,4 @@ args = {}
 if __name__ == "__main__":
     prompt = Prompt(description=description, tags=tags, content=content, args=args)
     prompt = prompt.get_or_save()
-    print(f"Prompt saved with id: {prompt.id}")
+    logging.info(f"Prompt saved with id: {prompt.id}")

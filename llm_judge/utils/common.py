@@ -8,6 +8,7 @@ from adapters.types import Conversation
 
 from llm_judge.database.models.base import MongoBaseModel
 from llm_judge.utils.types import LLMParamsList
+import logging
 
 
 def stringify_conversation(conversation: Conversation) -> str:
@@ -52,20 +53,20 @@ def write_to_csv(objects: List[MongoBaseModel], fp: str) -> None:
     if not objects:
         return
     if os.path.exists(fp):
-        print(f"Note: The file {fp} already exists and will be replaced.")
+        logging.info(f"Note: The file {fp} already exists and will be replaced.")
     with open(fp, mode="w", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(file, fieldnames=objects[0].get_seralization_header())
         writer.writeheader()
         for object in objects:
             writer.writerow(object.serialize())
-    print(f"Wrote {len(objects)} objects to {fp}")
+    logging.info(f"Wrote {len(objects)} objects to {fp}")
 
 
 def write_df_to_csv(df, fp: str, write_index=False) -> None:
     from pandas import DataFrame
 
     DataFrame(df).to_csv(fp, index=write_index)
-    print(f"Wrote DataFrame with {len(df)} rows to {fp}")
+    logging.info(f"Wrote DataFrame with {len(df)} rows to {fp}")
 
 
 def write_ids_to_json(objects: List[MongoBaseModel], fp: str) -> None:

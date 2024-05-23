@@ -4,17 +4,22 @@ import bson
 import json
 import pandas as pd
 import dspy.teleprompt
-from llm_judge.database.models.questions import Question
-from llm_judge.database.models.answers import Answer
-from llm_judge.database.models.judgments import Judgment
 from dspy.evaluate import answer_exact_match
 import os
 from dspy.teleprompt import BootstrapFewShotWithRandomSearch
 from llm_judge.judges import BaselineComparisonJudge
-import logging
 
 llm = dspy.OpenAI(model="gpt-3.5-turbo", api_key=os.environ["OPENAI_API_KEY"])
 dspy.settings.configure(lm=llm)
+
+import os
+
+import pymongo
+import pickle
+from dotenv import load_dotenv
+import logging
+
+load_dotenv("./.env", override=True)
 
 
 class EvaluationSignature(dspy.Signature):
@@ -76,6 +81,13 @@ class PromptTuner(BaselineComparisonJudge):
 
         self.ideal_judgment_df = pd.read_csv(ideal_judgement_path)
 
+    def get_prompt(self, prompt_id):
+        client = pymongo.MongoClient(os.environ["MARTIAN_MONGO_URI"])
+
+        prompts = client["llm-judge"]["prompts"]
+        prompt = prompts.find_one({"_id": bson.ObjectId(prompt_id)})
+        return prompt["content"]
+
     def refined_prompt(self, ideal_prompt, initial_prompt, question, judgement):
         cot = CoT()
         cot.load("compiled_cot.json")
@@ -102,11 +114,12 @@ class PromptTuner(BaselineComparisonJudge):
             metric=answer_exact_match, max_iters=5, num_samples=5
         )
         cot = CoT()
-        initial_prompt = []
 
         trainset = [
             dspy.Example(
-                initial_prompt=initial_prompt,
+                initial_prompt=self.get_prompt(
+                    self.judge_prompts["reversed_prompt_template"]
+                ),
                 judgement=judgement,
                 question=self.ideal_judgment_df["question"][i],
                 ideal_prompt=ideal_prompt,
@@ -125,6 +138,8 @@ if __name__ == "__main__":
         baseline_llm="gpt-3.5-turbo",
         judge_prompts={
             "system": "662813e0e25b6076a9e03df8",
+            "prompt_template": "662821e23eb9ef01018e30e2",
+            "reversed_prompt_template": "6628224eb84c0693351ca6a4",
         },
     )
     ideal_prompt = """

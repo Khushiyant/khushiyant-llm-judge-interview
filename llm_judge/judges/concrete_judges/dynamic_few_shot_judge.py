@@ -21,6 +21,7 @@ import time
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 import dotenv
+import logging
 
 dotenv.load_dotenv("../../../.env")
 global_voyage_client = voyageai.Client()
@@ -138,10 +139,10 @@ class DynamicFewShotJudge(Judge):
             pair.save()
             return pair
         except Exception as e:
-            print(
+            logging.info(
                 f"Error generating single judgment in for question id: {pair.question_id}, answer id: {pair.answer_id}, comparison answers: {pair.comparison_answers}  error: {e}"
             )
-            print(traceback.format_exc())
+            logging.info(traceback.format_exc())
             return None
 
     def _create_judge_input(
@@ -172,7 +173,7 @@ class DynamicFewShotJudge(Judge):
 
     def embed_strings(self, strings: List[str]) -> List[List[float]]:
         if len(strings) > 128:
-            print(f"Embedding {len(strings)} strings")
+            logging.info(f"Embedding {len(strings)} strings")
             t = time.time()
 
         total_output_embeddings = []
@@ -183,7 +184,7 @@ class DynamicFewShotJudge(Judge):
             total_output_embeddings.extend(output_embeddings)
 
         if len(strings) > 128:
-            print(
+            logging.info(
                 f"Finished embedding {len(strings)} strings, takes {time.time() - t} seconds"
             )
         return total_output_embeddings
@@ -261,6 +262,6 @@ if __name__ == "__main__":
     try:
         # Assuming `judge` is an instance of DynamicFewShotJudge
         pickle.dumps(judge)
-        print("Judge is pickleable!")
+        logging.info("Judge is pickleable!")
     except pickle.PicklingError as e:
-        print("Pickle error:", e)
+        logging.info("Pickle error:", e)

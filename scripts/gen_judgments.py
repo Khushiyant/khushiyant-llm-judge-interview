@@ -22,6 +22,7 @@ from llm_judge.utils.common import (
 from llm_judge.utils.ground_truth import gen_ground_truth_hash
 from llm_judge.utils.types import convert_to_llm_params_list
 from llm_judge.utils.common import parse_yaml_file
+import logging
 
 
 def create_judgment_objects(
@@ -89,7 +90,7 @@ def prepare_judgments(
             judgment_outputs.extend(judgment[0])
             judgment_worker_inputs.extend(judgment[1])
 
-    print(f"Generating {len(judgment_worker_inputs)} new judgments")
+    logging.info(f"Generating {len(judgment_worker_inputs)} new judgments")
 
     return judgment_outputs, judgment_worker_inputs
 

@@ -11,7 +11,7 @@ import concurrent.futures
 from tqdm import tqdm
 from adapters import AdapterFactory
 from adapters.types import Conversation
-import logging
+from llm_judge.utils.logger import info_logger as logging
 from llm_judge.database.models.answers import Answer
 from llm_judge.database.models.questions import Question
 from llm_judge.utils.prompt_modification import make_prompt_modification

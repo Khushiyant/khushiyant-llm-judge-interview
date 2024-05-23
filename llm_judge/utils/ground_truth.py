@@ -11,7 +11,7 @@ from llm_judge.database.models.questions import Question
 from scripts.gen_answers import create_answer_objects, gen_answers, prepare_answers
 from llm_judge.utils.types import LLMParamsList
 from llm_judge.utils.common import gen_hash, stringify_llm_params
-import logging
+from llm_judge.utils.logger import info_logger as logging
 
 EQUIVALENCE_COMPARISON_TEMPLATE = """Please act impartially and judge the following two answers based on how similar they are to each other and if they arrive at the same answer. Explain your reasoning. If both answers are functionally the same, please respond with [[A]]. If both answers are functionally different, please respond with [[B]]. If both answers arrive at the same solution, even if by different means, please respond with [[A]]. After providing your explanation, provide the rating of "A" or "B" in your response, in the format [[X]], where X is the rating.\n\n[Answer 1]\n{answer1}\n\n[Answer 2]\n{answer2}"""
 

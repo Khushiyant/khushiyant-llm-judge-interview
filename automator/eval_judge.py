@@ -8,7 +8,7 @@ import pandas as pd
 from datetime import datetime
 from typing import Literal
 from llm_judge.database.models.prompts import Prompt
-import logging
+from llm_judge.utils.logger import info_logger as logging
 import ast
 import shutil
 import json

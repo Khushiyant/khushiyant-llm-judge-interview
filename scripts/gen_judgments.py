@@ -22,7 +22,7 @@ from llm_judge.utils.common import (
 from llm_judge.utils.ground_truth import gen_ground_truth_hash
 from llm_judge.utils.types import convert_to_llm_params_list
 from llm_judge.utils.common import parse_yaml_file
-import logging
+from llm_judge.utils.logger import info_logger as logging
 
 
 def create_judgment_objects(

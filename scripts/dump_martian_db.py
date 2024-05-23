@@ -11,7 +11,7 @@ import pymongo
 import pickle
 from jsonargparse import ActionConfigFile, ArgumentParser
 from dotenv import load_dotenv
-import logging
+from llm_judge.utils.logger import info_logger as logging
 
 load_dotenv("./.env", override=True)
 

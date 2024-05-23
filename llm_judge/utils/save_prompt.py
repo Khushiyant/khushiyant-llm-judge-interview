@@ -1,6 +1,6 @@
 from llm_judge.database.models.prompts import Prompt
 from llm_judge.utils.types import JudgeType, PromptType
-import logging
+from llm_judge.utils.logger import info_logger as logging
 
 """
 Edit the following parameters and execute a file to create a new Prompt object in Mongodb.

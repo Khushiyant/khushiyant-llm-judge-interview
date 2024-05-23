@@ -21,7 +21,7 @@ import time
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 import dotenv
-import logging
+from llm_judge.utils.logger import info_logger as logging
 
 dotenv.load_dotenv("../../../.env")
 global_voyage_client = voyageai.Client()

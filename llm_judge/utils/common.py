@@ -8,7 +8,7 @@ from adapters.types import Conversation
 
 from llm_judge.database.models.base import MongoBaseModel
 from llm_judge.utils.types import LLMParamsList
-import logging
+from llm_judge.utils.logger import info_logger as logging
 
 
 def stringify_conversation(conversation: Conversation) -> str:

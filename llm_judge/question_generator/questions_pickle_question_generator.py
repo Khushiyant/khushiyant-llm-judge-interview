@@ -1,6 +1,6 @@
 import random
 import pickle
-import logging
+from llm_judge.utils.logger import info_logger as logging
 from typing import Any, Optional, List, Dict, TypeVar
 from pathlib import Path
 import dataclasses

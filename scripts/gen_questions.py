@@ -21,7 +21,7 @@ from llm_judge.utils.common import (
 from llm_judge.classifiers.classifier import Classifier
 from llm_judge.utils.types import LLMParamsList
 from llm_judge.utils.ground_truth import gen_gronud_truth
-import logging
+from llm_judge.utils.logger import info_logger as logging
 
 
 def batch_classify(

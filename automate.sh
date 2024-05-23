@@ -12,6 +12,7 @@ cd ..
 mv adapters/adapters ./tmp && rm -rf adapters && mv ./tmp adapters
 
 # Generate questions, answers, and judgments
+python scripts/dump_martian_db.py --config scripts/configs/dump_martian_db.yaml
 python scripts/gen_questions.py --config scripts/configs/gen_questions.yaml
 python scripts/gen_answers.py --config scripts/configs/gen_answers.yaml
 python scripts/gen_judgments.py --config scripts/configs/gen_judgments.yaml

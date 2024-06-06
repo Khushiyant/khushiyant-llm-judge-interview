@@ -11,6 +11,7 @@ cd ..
 
 mv adapters/adapters ./tmp && rm -rf adapters && mv ./tmp adapters
 
+conda env update --file environment.yaml
 # Generate questions, answers, and judgments
 python scripts/dump_martian_db.py --config scripts/configs/dump_martian_db.yaml
 python scripts/gen_questions.py --config scripts/configs/gen_questions.yaml

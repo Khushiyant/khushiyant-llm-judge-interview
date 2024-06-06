@@ -1,6 +1,6 @@
 import random
 import pickle
-from llm_judge.utils.logger import info_logger as logging
+
 from typing import Any, Optional, List, Dict, TypeVar
 from pathlib import Path
 import dataclasses
@@ -9,8 +9,6 @@ from llm_judge.question_generator.base_question_generator import BaseQuestionGen
 from llm_judge.database.models.questions import Question
 from llm_judge.utils.common import stringify_conversation, gen_hash
 import contextlib
-
-logger = logging.getLogger(__name__)
 
 T = TypeVar("T")
 

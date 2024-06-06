@@ -1,23 +1,18 @@
+import os
 import dspy
 import pathlib
 import bson
-import json
 import pandas as pd
 import dspy.teleprompt
 from dspy.evaluate import answer_exact_match
-import os
 from dspy.teleprompt import BootstrapFewShotWithRandomSearch
 from llm_judge.judges import BaselineComparisonJudge
+from dotenv import load_dotenv
+import pymongo
 
 llm = dspy.OpenAI(model="gpt-3.5-turbo", api_key=os.environ["OPENAI_API_KEY"])
 dspy.settings.configure(lm=llm)
 
-import os
-
-import pymongo
-import pickle
-from dotenv import load_dotenv
-import logging
 
 load_dotenv("./.env", override=True)
 
@@ -110,9 +105,7 @@ class PromptTuner(BaselineComparisonJudge):
         - str: The refined prompt.
 
         """
-        optimiser = BootstrapFewShotWithRandomSearch(
-            metric=answer_exact_match, max_iters=5, num_samples=5
-        )
+        optimiser = BootstrapFewShotWithRandomSearch(metric=answer_exact_match)
         cot = CoT()
 
         trainset = [
@@ -126,13 +119,16 @@ class PromptTuner(BaselineComparisonJudge):
             )
             for i, judgement in enumerate(self.ideal_judgment_df["judgments"])
         ]
+
+        for example in trainset:
+            example = example.with_inputs("initial_prompt", "judgement", "question")
         compiled_cot = optimiser.compile(cot, trainset=trainset)
         compiled_cot.save("compiled_cot.json")
 
 
 if __name__ == "__main__":
     # Load questions and answers
-    output_dir = pathlib.Path("output/test-2024-05-22-21-30")
+    output_dir = pathlib.Path("output/test-2024-06-06-00-22")
     tuner = PromptTuner(
         ideal_judgement_path=output_dir / "enriched_judgments",
         baseline_llm="gpt-3.5-turbo",
@@ -193,9 +189,9 @@ if __name__ == "__main__":
     tuner.train_data(ideal_prompt)
 
     refined_prompt = tuner.refined_prompt(
-        ideal_prompt=ideal_prompt,
         initial_prompt="decide which is better.",
         question=question,
         judgement=judgement,
+        ideal_prompt=ideal_prompt,
     )
     print("Refined Prompt: ", refined_prompt)

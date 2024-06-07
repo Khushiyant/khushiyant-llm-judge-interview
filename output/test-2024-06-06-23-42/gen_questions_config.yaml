@@ -1,0 +1,31 @@
+question_generator:
+  class_path: llm_judge.question_generator.QuestionPickleGenerator
+  init_args:
+    data_path: output/q_dump.pkl
+    num_samples: 4
+    random_seed: 42
+classifiers:
+- class_path: llm_judge.classifiers.ObjectivityClassifier
+  init_args:
+    model: gpt-4-turbo-preview
+    error_retry_limit: 3
+base_dir: output/
+experiment_name: test
+output_dir: output/test-2024-06-06-23-42
+wanted_classes:
+- objective
+ground_truth_params:
+- gpt-4-turbo-preview:
+    temperature: 0.7
+    max_tokens: 1000
+- gpt-4:
+    temperature: 0.7
+- claude-3-opus-20240229:
+    temperature: 0.7
+ground_truth_aggregator_params:
+- gpt-4-turbo-preview:
+    temperature: 0.7
+    max_tokens: 1000
+printout_limit: 50
+num_workers: 5
+seed: 42

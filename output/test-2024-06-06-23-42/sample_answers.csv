@@ -1,0 +1,269 @@
+id,question_id,llm_id,params,prompt_modification,content,cost,args
+663169deea4084e68ca70423,663164baa94a1104fd712bde,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"To find the cable car's velocity, we use the formula:
+
+Velocity = Distance / Time
+
+Given that the cable car was pulled 51 meters up the mountain in 7.5 seconds, we calculate its velocity as follows:
+
+Velocity = 51 meters / 7.5 seconds = 6.8 meters per second
+
+Therefore, the cable car's velocity up the mountain was 6.8 meters per second.",0.008140000000000001,
+663169deea4084e68ca70440,663164baa94a1104fd712bce,gpt-3.5-turbo-0125,"temperature: 0.7
+",,Opção correta: b. I e II,0.00035549999999999997,
+663169deea4084e68ca70441,663164baa94a1104fd712b84,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"Yes, mechanical mops, also known as electric mops or steam mops, are cleaning devices designed to make the task of mopping floors easier and more efficient. Unlike traditional mops, which require manual effort to scrub and clean floors, mechanical mops use electricity to enhance their cleaning capabilities. Here are a few types of mechanical mops:
+
+1. **Steam Mops**: These use water heated to a high temperature to produce steam, which is then directed onto the floor through a mop pad",0.00576,
+663169deea4084e68ca70482,663164baa94a1104fd712bbc,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"""Yeah, except you had nothing to do with the victory,"" the boy with the blue mohawk threw back the light insult at his best friend. Demetri chuckled as he took a bite of the nacho in his hand, savoring the cheesy goodness. Moon rolled his eyes at their banter, used to their friendly jabs by now.",0.0002225,
+663169deea4084e68ca70426,663164baa94a1104fd712ba6,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,Hot water,0.00168,
+663169deea4084e68ca70429,663164baa94a1104fd712ba9,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"A change at the level of the genome would be a mutation. Mutations are direct alterations in the DNA sequence of an organism's genome, such as:
+
+1. **Point mutation:** A single nucleotide change in the DNA sequence.
+2. **Insertion:** Additional DNA base pairs are inserted into a sequence.
+3. **Deletion:** DNA base pairs are removed from a sequence.
+4. **Duplication:** A segment of the DNA sequence is duplicated and inserted into the genome.
+5.",0.00423,
+663169deea4084e68ca70443,663164baa94a1104fd712b84,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"Yes, I am familiar with mechanical mops. Mechanical mops are typically designed to help make mopping floors easier and more efficient. They often have features such as a built-in wringer or a mechanism for squeezing out excess water, making the mopping process less labor-intensive. Some mechanical mops may also have rotating or spinning heads to help scrub and clean floors more effectively. Overall, mechanical mops can be a convenient and effective tool for keeping floors clean and tidy.",0.0002805,
+663169deea4084e68ca70486,663164baa94a1104fd712be4,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,capital goods,0.00174,
+663169deea4084e68ca7040d,663164baa94a1104fd712b94,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"They begin to rise with additional output produced
+
+They begin to fall after this output level",0.000102,
+663169deea4084e68ca703e6,663164baa94a1104fd712bba,gpt-3.5-turbo-0125,"temperature: 0.7
+",,挖币是指通过计算机的算力来参与加密货币网络的运作，从而获得加密货币作为奖励的过程。在区块链技术中，挖币是通过计算复杂的数学问题来验证交易并创建新的区块的过程。挖币的人被称为矿工，他们使用计算机来解决数学难题，验证交易并将新的区块添加到区块链中。作为奖励，矿工可以获得一定数量的加密货币，如比特币。挖币是加密货币领域中一种常见的获取货币的方式，但需要大量的计算能力和电力消耗。,0.0006375,
+663169deea4084e68ca70413,663164baa94a1104fd712bc5,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"Let's denote the smaller integer as x and the larger integer as x + 1, since they are consecutive positive integers.
+
+The product of these two integers is given as 1,332, so we can write the equation:
+
+x(x + 1) = 1,332
+
+Expanding the left side of the equation:
+
+x^2 + x = 1,332
+
+Rearranging the equation to form a quadratic equation in standard form:
+
+x^2 + x - 1,332 = 0
+
+Now we have a quadratic equation that we can solve using various methods such as factoring, completing the square, or using the quadratic formula. In this case, factoring may not be straightforward, so let's use the quadratic formula:
+
+x = (-b ± √(b^2 - 4ac)) / 2a
+
+For the quadratic equation x^2 + x - 1,332 = 0, we have a = 1, b = 1, and c = -1,332. Substituting these values into the formula:
+
+x = (-1 ± √(1^2 - 4*1*(-1,332))) / 2*1
+
+x = (-1 ± √(1 + 5,328)) / 2
+
+x = (-1 ± √5,329) / 2
+
+x = (-1 ± 73) / 2
+
+Now, we have two possible solutions for x:
+
+x = (-1 + 73) / 2 = 72 / 2 = 36
+
+x = (-1 - 73) / 2 = -74 / 2 = -37
+
+Since we are looking for positive integers, the value of x can only be 36. Therefore, the larger integer (x + 1) will be:
+
+36 + 1 = 37
+
+So, the larger integer is 37.",0.0009075,
+663169deea4084e68ca70387,663164baa94a1104fd712bc2,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"To find the ship's horizontal distance from the lighthouse, we can use trigonometry, specifically the tangent function, since we have the angle of elevation to the beacon and the height of the beacon above the water level.
+
+Given:
+- Height of the lighthouse's beacon above water = 126 feet
+- Angle of elevation = 13 degrees
+
+We need to find the horizontal distance from the boat to the lighthouse, which will be the adjacent side of the right triangle formed by the boat",0.01005,
+663169deea4084e68ca703ec,663164baa94a1104fd712bdc,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"Det er ikke klart i tekstuddraget, hvad folk i byen gør, da militsen dukker op. Men det fremgår, at drengens far arrangerer en indsamling af mad til militsen, og at folk stimler sammen om dem. Efter militsen begynder at skyde mod folk, spredes de i vild panik, og drengen og hans mor flygter hjemmefra. Det er ikke beskrevet, om folk i byen jubler eller bliver bange, men det virker som om nogle stikker af for at undgå militsen.",0.0016685,
+663169deea4084e68ca703c9,663164baa94a1104fd712bad,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"1. 6, (x - 4)
+2. 5y, (x + 5)
+3. 2x^2, (1 - 4x)
+4. 10x^2y^2, (2y^2 + x)
+5. -3, (x^2 - 3x + 4)
+6. 4, (x^3 - 36)
+7. 2x^2, (x^2 +",0.01296,
+663169deea4084e68ca703ea,663164baa94a1104fd712bdc,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"Folk i byen bliver bange, da militsen dukker op.",0.02968,
+663169deea4084e68ca70390,663164baa94a1104fd712bb7,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"To find the density of the brick, we use the formula:
+
+Density = Mass / Volume
+
+First, we calculate the volume of the brick:
+
+Volume = length × width × height = 5 cm × 4 cm × 3 cm = 60 cm³
+
+Given that the mass of the brick is 120 g, we can now calculate the density:
+
+Density = 120 g / 60 cm³ = 2 g/cm³
+
+Therefore, the density of the brick is 2",0.00362,
+663169deea4084e68ca70383,663164baa94a1104fd712b90,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"This sample may be biased as it only includes people who are at the theater complex, which may not be representative of the overall population's entertainment spending habits. People who frequent theaters may have different spending habits than those who do not, so the sample may not accurately reflect the entire population.",0.0001045,
+663169deea4084e68ca7042b,663164baa94a1104fd712ba9,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"A change at the level of the genome refers to alterations in the DNA sequence itself. This could include mutations, deletions, insertions, or rearrangements of the genetic material within an organism's chromosomes.",0.0001245,
+663169deea4084e68ca70477,663164baa94a1104fd712bb9,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"To simplify the expression \(\frac{x^2 + 3x - 4}{x^2 - x - 20}\), we start by factoring both the numerator and the denominator.
+
+Numerator: \(x^2 + 3x - 4\)
+
+- To factor this, we look for two numbers that multiply to \((-4)\) and add to \(3\). These numbers are \(4\) and \((-1)\).
+- Thus, \(x^2",0.00336,
+663169deea4084e68ca70492,663164baa94a1104fd712b9b,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"Another word that means the same as ""successful"" is ""fruitful.""",0.008940000000000002,
+663169deea4084e68ca70434,663164baa94a1104fd712bcc,gpt-3.5-turbo-0125,"temperature: 0.7
+",,produce a flurry of ideas without any initial criticism.,8.599999999999999e-05,
+663169deea4084e68ca70480,663164baa94a1104fd712bbc,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"""Yeah, except you had nothing to do with the victory,"" the boy with the blue mohawk threw back the light insult at his best friend, just as Demetri took a bite of the nacho he was holding.",0.00367,
+663169deea4084e68ca703b0,663164baa94a1104fd712bd9,gpt-3.5-turbo-0125,"temperature: 0.7
+",,direction,5.3e-05,
+663169deea4084e68ca7043e,663164baa94a1104fd712bce,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"A afirmação correta sobre a curva de transformação ou curva das possibilidades de produção é:
+
+e. II, III e IV
+
+A curva de transformação mostra as diferentes combinações de produção que uma economia pode alcançar, dada uma quantidade fixa de recursos. As afirmações II, III e IV relacionam-se a conceitos que podem ser associados à representação das limitações e escolhas refletidas na cur",0.009810000000000001,
+663169deea4084e68ca70488,663164baa94a1104fd712be4,gpt-3.5-turbo-0125,"temperature: 0.7
+",,capital goods,8.7e-05,
+663169deea4084e68ca7041d,663164baa94a1104fd712bdb,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"To find the acceleration of an object, you can use Newton's second law of motion, which is expressed as \( F = ma \), where \( F \) is the force applied to an object, \( m \) is the mass of the object, and \( a \) is the acceleration of the object. Rearranging the equation to solve for acceleration gives us \( a = \frac{F}{m} \).
+
+Let's calculate the acceleration for each object:
+
+1. For the",0.0039000000000000003,
+663169deea4084e68ca703c0,663164baa94a1104fd712be2,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,T,0.00444,
+663169deea4084e68ca70479,663164baa94a1104fd712bb9,gpt-3.5-turbo-0125,"temperature: 0.7
+",,(x^2 + 3x - 4) / (x^2 - x - 20),5.1000000000000006e-05,
+663169deea4084e68ca7041f,663164baa94a1104fd712bdb,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"The object with the lowest acceleration would be a 100 kg object acted on by a 125 N force. 
+
+Acceleration is directly proportional to force and inversely proportional to mass (Newton's second law, F=ma). So, the higher the mass and the lower the force, the lower the acceleration would be. In this case, the 100 kg object with a 125 N force would have the lowest acceleration compared to the other options.",0.00017999999999999998,
+663169deea4084e68ca70483,663164baa94a1104fd712bc7,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,The best answer is: to defend Indigenous lands from US expansion. The Northwest Indian Confederation was created as a response to the encroachment and expansion of the United States into territories that were inhabited by Indigenous peoples. The Confederation aimed to unite various tribes in defense of their lands against U.S. settlers and government forces.,0.00551,
+663169deea4084e68ca703e4,663164baa94a1104fd712bba,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"""挖币""主要是指通过计算机硬件运算来获取数字货币的过程，尤其是在加密货币领域中普遍使用的术语。这个过程最常见的形式是挖矿（Mining），它是区块链网络中产生新区块并验证交易的机制。
+
+在比特",0.00945,
+663169deea4084e68ca70432,663164baa94a1104fd712bcc,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,produce a flurry of ideas without any initial criticism.,0.0017200000000000002,
+663169deea4084e68ca703ae,663164baa94a1104fd712bd9,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,direction,0.0010600000000000002,
+663169deea4084e68ca70453,663164baa94a1104fd712be1,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,a. A business debit card payment to a creditor will decrease the assets and decrease the liabilities of the entity.,0.00333,
+663169deea4084e68ca70378,663164baa94a1104fd712bb1,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"To find the shortest distance between the student and the student's home, we can use the Pythagorean theorem since the path taken by the student and the direct path home form a right triangle. The legs of the triangle are the distances traveled north and west, which are 1 mile and 4 miles, respectively.
+
+The Pythagorean theorem states that in a right triangle, the square of the length of the hypotenuse (c) is equal to the sum of the squares of the lengths",0.007,
+663169deea4084e68ca70470,663164baa94a1104fd712ba1,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"The building blocks of proteins are amino acids. Amino acids are organic compounds that contain an amino group (-NH2) and a carboxyl group (-COOH) and are linked together in a specific sequence to form proteins. There are 20 different amino acids that can be found in proteins, each with its own unique side chain that determines its specific properties and functions within the protein structure.",0.00012550000000000001,
+663169deea4084e68ca70467,663164baa94a1104fd712be3,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"B
+Montresor begins to trap Fortunato behind the wall.",0.000178,
+663169deea4084e68ca7040b,663164baa94a1104fd712b94,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"They are at a minimum at the same output level
+
+They begin rising with additional output produced",0.0020700000000000002,
+66316c57e510dc7fc27d3b89,663164baa94a1104fd712bc7,gpt-3.5-turbo-0125,"temperature: 0.7
+",,The best answer is: to defend Indigenous lands from US expansion. The Northwest Indian Confederation was created in response to the encroachment of Native American lands by white settlers and the United States government. The Confederation sought to unite various Native American tribes in the Northwest to defend their lands and resist further expansion by the US.,0.0002755,
+663169deea4084e68ca7037a,663164baa94a1104fd712bb1,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"To find the shortest distance between the student and the student’s home, we can use the Pythagorean theorem since the student first biked 1 mile north and then 4 miles west, forming a right triangle.
+
+Let the distance between the student's home and the point where the student turned west be the hypotenuse of the right triangle.
+
+Using the Pythagorean theorem, the shortest distance can be calculated as:
+
+(shortest distance)^2 = (1 mile)^2 + (4 miles)^2
+(shortest distance)^2 = 1 + 16
+(shortest distance)^2 = 17
+
+Taking the square root of both sides:
+shortest distance = √17 miles
+
+Therefore, the value of q in q√ miles is q = 17.",0.000437,
+663169deea4084e68ca70425,663164baa94a1104fd712bde,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"First, let's calculate the velocity of the bird in meters per second:
+
+Given that the bird was flying at 20 meters per second, we don't need to convert anything. The bird's velocity is 20 meters per second.
+
+Now, let's calculate the velocity of the cable car:
+
+Velocity = Distance / Time
+
+Given that the cable car was pulled 51 meters in 7.5 seconds, we can calculate the velocity as:
+
+Velocity = 51 meters / 7.5 seconds ≈ 6.8 meters per second
+
+Therefore, the cable car's velocity up the mountain was approximately 6.8 meters per second.",0.0004745,
+663169deea4084e68ca70401,663164baa94a1104fd712baa,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"""Bayview"" typically refers to a location or area that offers a view of a bay, such as a body of water. It is a common name for residential areas or neighborhoods situated near a bay or waterfront, providing residents or visitors with scenic views of the bay.",0.0007295,
+663169deea4084e68ca70381,663164baa94a1104fd712b90,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"The sample in this scenario appears to be biased rather than representative. Here are the reasons why:
+
+1. **Location Bias**: The survey is conducted at a theater complex, which means the respondents are people who are already spending money on a specific form of entertainment. This location attracts individuals who have an interest and the means to spend on such activities, skewing the results towards higher spending on entertainment.
+
+2. **Activity Bias**: Since the survey targets people at a theater, it inherently focuses on individuals who",0.00338,
+663169deea4084e68ca70455,663164baa94a1104fd712be1,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"a. A business debit card payment to a creditor will decrease the assets and decrease the liabilities of the entity.
+
+This statement is correct. When a business makes a payment to a creditor using a debit card, it decreases the assets (cash) and decreases the liabilities (amount owed to the creditor).",0.00022199999999999998,
+663169deea4084e68ca703cb,663164baa94a1104fd712bad,gpt-3.5-turbo-0125,"temperature: 0.7
+",,"1. 6(x - 4)
+2. 5y(x + 5)
+3. 2x^2(1 - 4x)
+4. 10x^2y^2(2y^2 + x)
+5. -3(x^2 - 3x + 4)
+6. 4(x^3 - 36)
+7. 2x^2(x^2 + x - 30)
+8. -8(x + 11)
+9. 4xy(1 - 2z)
+10. -3x^2(4x^2 + 1)",0.0006929999999999999,
+663169deea4084e68ca70494,663164baa94a1104fd712b9b,gpt-3.5-turbo-0125,"temperature: 0.7
+",,accomplished,0.00042899999999999997,
+663169deea4084e68ca7046e,663164baa94a1104fd712ba1,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"The building blocks of proteins are amino acids. Proteins are made up of long chains of amino acids linked together by peptide bonds. There are 20 different amino acids that are commonly found in proteins, and the sequence and composition of these amino acids determine the structure and function of the protein. Amino acids themselves are composed of a central carbon atom, an amino group (NH2), a carboxyl group (COOH), a hydrogen atom, and a distinctive side chain (R group) that",0.00314,
+663169deea4084e68ca70392,663164baa94a1104fd712bb7,gpt-3.5-turbo-0125,"temperature: 0.7
+",,The density of the brick is 1.6 g/cm3.,5.2000000000000004e-05,
+663169deea4084e68ca703f3,663164baa94a1104fd712bc9,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"No, the Earth is not flat. It is an oblate spheroid. This means it is mostly spherical but slightly flattened at the poles and bulging at the equator due to its rotation. This shape has been confirmed through various means, including satellite imagery, physics, and direct observation from space. The concept of a spherical Earth dates back to ancient Greek philosophers, and since then, further evidence has continuously supported this model.",0.0027199999999999998,
+663169deea4084e68ca703ff,663164baa94a1104fd712baa,gpt-4-turbo-preview,"temperature: 0.7
+max_tokens: 100
+",,"""Bayview"" typically refers to a view of a bay, which is a broad inlet of the sea where the land curves inward. It can be used to describe any location or property that offers a view of such a body of water. Often, places with the name ""Bayview"" are situated along a coast or near a bay, offering picturesque views of the water and surrounding landscape. The term can also be part of a place name or the name of hotels, residential areas, businesses, or",0.01597,
